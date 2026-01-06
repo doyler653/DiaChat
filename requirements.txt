@@ -1,6 +1,4 @@
-torch==2.2.2
+torch==2.2.2           # or a version compatible with your Python
 transformers==4.40.2
-accelerate
-streamlit
-sentencepiece
-safetensors
+streamlit==1.52.2
+peft
