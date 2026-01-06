@@ -28,7 +28,6 @@ model_name = "Doyler653/DiaChatLLM"
 # Load tokenizer and model
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(model_name)
-]
 
 # UI
 
