@@ -4,34 +4,34 @@ import torch
 import streamlit as st
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
-# -----------------------------
 # App config
-# -----------------------------
+
 st.set_page_config(page_title="HF Chatbot", layout="centered")
 
 MODEL_ZIP = "model.zip"
 MODEL_DIR = "model"
 
-# -----------------------------
+
 # Extract model if needed
-# -----------------------------
+
 if not os.path.exists(MODEL_DIR):
     with zipfile.ZipFile(MODEL_ZIP, "r") as zip_ref:
         zip_ref.extractall(MODEL_DIR)
 
-# -----------------------------
 # Load model (cached)
-# -----------------------------
-tokenizer = AutoTokenizer.from_pretrained(MODEL_DIR)
-model = AutoModelForCausalLM.from_pretrained(
-    MODEL_DIR,
-    torch_dtype=torch.float32
-)
-model.eval()
 
-# -----------------------------
+from transformers import AutoTokenizer, AutoModelForCausalLM
+
+# Use the correct Hugging Face repo
+model_name = "Doyler653/DiaChatLLM"
+
+# Load tokenizer and model
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoModelForCausalLM.from_pretrained(model_name)
+]
+
 # UI
-# -----------------------------
+
 st.title("🤖 Chatbot App")
 st.caption("Powered by your Hugging Face model")
 
