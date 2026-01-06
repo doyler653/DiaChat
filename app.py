@@ -22,21 +22,12 @@ if not os.path.exists(MODEL_DIR):
 # -----------------------------
 # Load model (cached)
 # -----------------------------
-@st.cache_resource
-def load_model():
-    device = "cuda" if torch.cuda.is_available() else "cpu"
-
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_DIR)
-    model = AutoModelForCausalLM.from_pretrained(
-        MODEL_DIR,
-        torch_dtype=torch.float16 if device == "cuda" else torch.float32,
-        device_map="auto" if device == "cuda" else None
-    )
-
-    model.eval()
-    return tokenizer, model, device
-
-tokenizer, model, device = load_model()
+tokenizer = AutoTokenizer.from_pretrained(MODEL_DIR)
+model = AutoModelForCausalLM.from_pretrained(
+    MODEL_DIR,
+    torch_dtype=torch.float32
+)
+model.eval()
 
 # -----------------------------
 # UI
